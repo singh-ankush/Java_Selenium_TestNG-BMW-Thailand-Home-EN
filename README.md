@@ -12,4 +12,4 @@ Technologies used:
 It can currently only automate the pages, validation to be added later.
 Detects components dynamically in navigation.
 
-\\\\*Happy coding*//
+\\\\***Happy coding***//
