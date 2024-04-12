@@ -13,7 +13,7 @@ public class Home extends driver.Webdriver{
 	}
 	
 	public void nav() throws Exception{
-		wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		for (int i = 1; i <= 4; i++) {
 			String urlExp = wd.getCurrentUrl();
 			Thread.sleep(1000);
@@ -48,7 +48,7 @@ public class Home extends driver.Webdriver{
 	
 	public void footer_contactus()throws Exception{
 		JSEdown();
-		wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		for (int i = 0; i <= 5; i++) {
 			Thread.sleep(1000);
 			wd.findElement(By.cssSelector("#list-391caceb1d-"+i+" > span")).click();
