@@ -50,10 +50,21 @@ public class Home extends driver.Webdriver{
 	}
 	
 	public void footer_contactus()throws Exception{
+		JSEdown();
+		wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		for (int i = 0; i <= 5; i++) {
 			Thread.sleep(1000);
 			wd.findElement(By.cssSelector("#list-391caceb1d-"+i+" > span")).click();
-			wd.navigate().back();
+			ArrayList<String> tabs = new ArrayList<String> (wd.getWindowHandles());
+			if(tabs.size()>1) {
+				wd.switchTo().window(tabs.get(1));
+				wd.switchTo().window(tabs.get(1)).close();
+				wd.switchTo().window(tabs.get(0));
+			}
+			else if(tabs.size()==1) {
+				wd.navigate().back();
+			}
 		}
+		JSEup();
 	}
 }
