@@ -13,21 +13,18 @@ public class Home extends driver.Webdriver{
 	}
 	
 	public void nav() throws Exception{
-		for (int i = 1; i <= 5; i++) {
+		wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		for (int i = 1; i <= 4; i++) {
 			String urlExp = wd.getCurrentUrl();
 			Thread.sleep(1000);
 			WebElement wl = wd.findElement(By.xpath("/html/body/header/div[2]/div/div/root-shell/div/nav[1]/div[2]/ul/li["+i+"]"));
 			wl.click();
 			String urlAct = wd.getCurrentUrl();
 			if(urlExp.equals(urlAct)) {
-				String comname = wl.findElement(By.tagName("span")).getText();
-				if (comname.equals("Shop Online")) {
 					shpol();
-				}
-				else {}
 			}
 			else {
-			wd.navigate().back();
+				wd.navigate().back();
 			}
 		}
 	}
@@ -35,16 +32,16 @@ public class Home extends driver.Webdriver{
 	public void shpol() throws Exception {
 		for (int i = 1; i < 5; i++) {
 			WebElement wlx = wd.findElement(By.xpath("/html/body/header/div[2]/div/div/root-shell/div/div[2]/div/div[1]/div[2]/div/div/div/div/div/div[1]/div/div/div/div/ul/li["+i+"]/a/span"));
-			
-			if(wlx.getText().equals("Buy Available New Cars")) {
-				
+			wlx.click();
+			ArrayList<String> tabs = new ArrayList<String> (wd.getWindowHandles());
+			if(tabs.size()>1) {
+				wd.switchTo().window(tabs.get(1));
+				Thread.sleep(1000);
+				wd.switchTo().window(tabs.get(1)).close();
+				wd.switchTo().window(tabs.get(0));
 			}
-			else {
-				wlx.click();
-				ArrayList<String> tabs = new ArrayList<String> (wd.getWindowHandles());
-			    wd.switchTo().window(tabs.get(0));
-				wd.navigate().to("https://www.bmw.co.th/en/home.html");
-				wd.findElement(By.xpath("/html/body/header/div[2]/div/div/root-shell/div/nav[1]/div[2]/ul/li[4]/button")).click();
+			else if(tabs.size()==1) {
+				wd.navigate().back();
 			}
 		}
 	}
