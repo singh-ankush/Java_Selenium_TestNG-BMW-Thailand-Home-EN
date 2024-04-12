@@ -27,7 +27,7 @@ public class runNG extends exe.Shadow_DOM {
 		nav();
 	}
 	
-//	@Test (priority = 2)
+	@Test (priority = 2)
 	public void contactUS() throws Exception {
 		footer_contactus();
 	}
