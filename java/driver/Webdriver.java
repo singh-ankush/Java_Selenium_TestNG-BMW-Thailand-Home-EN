@@ -32,6 +32,16 @@ public class Webdriver {
 		wd.get(link);
 	}
 	
+	public void JSEdown() {
+		JavascriptExecutor js = (JavascriptExecutor)wd;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
+	
+	public void JSEup() {
+		JavascriptExecutor js = (JavascriptExecutor)wd;
+		js.executeScript("window.scrollTo(0, 0)");
+	}
+	
 	public void quit() {
 		wd.quit();
 	}
